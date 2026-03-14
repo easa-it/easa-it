@@ -252,26 +252,101 @@
     display: flex;
     justify-content: flex-end; /* Right justify */
     gap: 15px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    white-space: nowrap;
 }
 
 /* Button Styles - Compact Size */
 .special-btn {
     display: flex;
     align-items: center;
-    padding: 12px 20px; /* Reduced from 18px 35px */
-    border-radius: 6px; /* Reduced from 8px */
+    padding: 10px 15px; /* Slightly reduced padding */
+    border-radius: 6px;
     color: white;
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.95rem; /* Reduced from 1.1rem */
+    font-size: 0.9rem; /* Slightly smaller font */
     transition: all 0.3s ease;
     box-shadow: 0 3px 8px rgba(0,0,0,0.12);
     position: relative;
     overflow: hidden;
     z-index: 1;
-    height: 45px; /* Fixed height */
+    height: 40px; /* Slightly shorter height */
     white-space: nowrap;
+}
+        /* Even more compact for very small screens */
+@media (max-width: 1200px) {
+    .special-btn {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+        height: 38px;
+    }
+    
+    .special-btn i {
+        margin-right: 4px;
+        font-size: 0.8rem;
+    }
+    
+    .buttons-container {
+        gap: 10px;
+    }
+}
+
+@media (max-width: 992px) {
+    .special-btn {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+        height: 36px;
+    }
+    
+    .special-btn i {
+        margin-right: 3px;
+        font-size: 0.75rem;
+    }
+    
+    .buttons-container {
+        gap: 8px;
+    }
+}
+
+/* For desktop, ensure container has enough width */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1400px; /* Increased from 1200px to give more space */
+    }
+}
+
+/* Remove any conflicting styles */
+@media (max-width: 768px) {
+    .buttons-container {
+        flex-direction: row; /* Keep horizontal even on tablet */
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+    }
+    
+    .special-btn {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+        height: 36px;
+    }
+    
+    /* Override the previous mobile styles that caused wrapping */
+    .special-dropdown {
+        width: auto;
+    }
+}
+
+/* Only wrap on very small screens */
+@media (max-width: 576px) {
+    .buttons-container {
+        flex-wrap: wrap; /* Allow wrapping only on mobile */
+        justify-content: center;
+    }
+    
+    .special-btn {
+        width: auto;
+        min-width: 160px;
+    }
 }
 
 .special-btn::before {
@@ -305,11 +380,13 @@
     margin-left: 8px;
     font-size: 0.8rem;
     opacity: 0.9;
+    position: relative;
+    display: inline-block;
+    flex-shrink: 0;
 }
 
 /* Button Colors - Fixed */
 .research-btn {
-    font-weight: 100;
     font-size: 0.6rem;
     background-color:#1B4F72; /* Blue color for Research */
     border-bottom: 2px solid #1B4F72; /* Darker blue border */
@@ -320,7 +397,6 @@
 }
 
 .accreditation-btn {
-    font-weight: 600;
     font-size: 0.6rem;
     background-color: #1B4F72; /* Green color for Accreditation */
     border-bottom: 2px solid #1B4F72; /* Darker green border */
@@ -331,6 +407,7 @@
 }
 /* Students Activities Button - Unique Color (Orange) */
 .students-btn {
+    font-size: 0.6rem;
     background-color: #FF9800; /* Orange color */
     border-bottom: 2px solid #F57C00; /* Darker orange border */
 }
@@ -1224,6 +1301,8 @@
         
             <!-- Research Button with Dropdown -->
             <div class="special-dropdown research drop down menu">
+                   <div class="container" style="max-width: 100%; padding: 0 20px;"> <!-- Full width container -->
+                        <div class="buttons-container" style="justify-content: flex-end; flex-wrap: nowrap;">
                 <a href="#" class="special-btn research-btn">
                     <i class="fas fa-flask"></i>
                     <span>Research</span>
@@ -1237,6 +1316,8 @@
                     <a href="research-labs.html"><i class="fas fa-microscope"></i> Research Labs</a>
                     <a href="collaborations.html"><i class="fas fa-handshake"></i> Collaborations</a>
                 </div>
+            </div>
+                   </div>
             </div>
 
             
